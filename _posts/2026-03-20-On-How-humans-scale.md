@@ -58,7 +58,7 @@ This is Hebb's rule. When two neurons activate at the same time repeatedly, the 
 
 Mathematically, if neuron $i$ and neuron $j$ tend to activate together across your experiences, then:
 
-\\[w_{ij} \propto \sum_{\text{experiences}} s_i \cdot s_j$$
+$$w_{ij} \propto \sum_{\text{experiences}} s_i \cdot s_j$$
 
 The weight between them accumulates evidence of their co-occurrence. This is how experience writes itself into the structure of the brain.
 (this looked very boring in my soft computing class yesterday but here it looks elegant hehe)
@@ -99,11 +99,11 @@ But for modern AI, we needed a more fundamental fix. Which brings us to 2020.
 
 Ramsauer et al. changed the energy function. Instead of a quadratic interaction between the query and stored patterns, they used an exponential one. The new energy function is:
 
-\\[E(\boldsymbol{\xi}) = -\frac{1}{\beta}\log\sum_{\mu} \exp\!\left(\beta\,\boldsymbol{\xi}^{\mu\top}\boldsymbol{\xi}\right) + \frac{1}{2}\|\boldsymbol{\xi}\|^2$$
+$$E(\boldsymbol{\xi}) = -\frac{1}{\beta}\log\sum_{\mu} \exp\!\left(\beta\,\boldsymbol{\xi}^{\mu\top}\boldsymbol{\xi}\right) + \frac{1}{2}\|\boldsymbol{\xi}\|^2$$
 
 The detail matters less than the consequence: the capacity explodes from $0.14N$ to exponential in the dimension. And the update rule that falls out of minimising this energy is:
 
-\\[\boldsymbol{\xi}^{\text{new}} = X\,\text{softmax}\!\left(\beta\, X^\top \boldsymbol{\xi}\right)$$
+$$\boldsymbol{\xi}^{\text{new}} = X\,\text{softmax}\!\left(\beta\, X^\top \boldsymbol{\xi}\right)$$
 
 Read that equation slowly. You take your current state, compute its similarity to every stored pattern, convert those similarities to weights via softmax, and retrieve a weighted mixture of all patterns. The parameter $\beta$ controls how sharp the retrieval is. High $\beta$: one specific memory snaps into focus. Low $\beta$: a diffuse blend of related memories. In between: a contextual cluster — a mood, a theme, a period of life rising together.
 
@@ -147,11 +147,11 @@ Now here is the part I didn't expect when I started thinking about this.
 
 The update rule of the modern Hopfield network is:
 
-\\[\boldsymbol{\xi}^{\text{new}} = X\,\text{softmax}\!\left(\beta\, X^\top \boldsymbol{\xi}\right)$$
+$$\boldsymbol{\xi}^{\text{new}} = X\,\text{softmax}\!\left(\beta\, X^\top \boldsymbol{\xi}\right)$$
 
 The transformer attention mechanism is:
 
-\\[\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V$$
+$$\text{Attention}(Q, K, V) = \text{softmax}\!\left(\frac{QK^\top}{\sqrt{d_k}}\right)V$$
 
 These are the same equation. Not analogous. Not inspired by each other. Algebraically identical, with the correspondence: query $\leftrightarrow Q$, stored pattern indices $\leftrightarrow K$, stored pattern content $\leftrightarrow V$, inverse temperature $\beta \leftrightarrow 1/\sqrt{d_k}$.
 
