@@ -28,7 +28,7 @@ author:
   bio: "Computer Science student with a focus on machine learning, systems programming, and artificial intelligence."
   location: "NCR, India"
   employer:
-  uri: 
+  uri:
   email:
 
   # Academic websites
@@ -207,6 +207,7 @@ kramdown:
   toc_levels: 1..6
   smart_quotes: lsquo,rsquo,ldquo,rdquo
   enable_coderay: false
+  math_engine: mathjax
 
 # These settings control the types of collections used by the template
 collections:

@@ -79,7 +79,7 @@ This is what remembering feels like from the inside. You don't search for a memo
 
 The weight matrix $W$ encoding all your Hebbian-learned connections is the shape of the entire landscape. It is the structure of your memory. And your current state $\bm{s}$ — which neurons are firing right now — is where you are in that landscape at this moment. Your current thought.
 
-The update is just: let $\bm{s}$ roll downhill on the landscape carved by $W$. A thought is a query. Memory is the landscape. Retrieval is falling.(ahh so poetic!)
+The update is just: let $\boldsymbol{s}$ roll downhill on the landscape carved by $W$. A thought is a query. Memory is the landscape. Retrieval is falling.(ahh so poetic!)
 
 ---
 
@@ -99,11 +99,11 @@ But for modern AI, we needed a more fundamental fix. Which brings us to 2020.
 
 Ramsauer et al. changed the energy function. Instead of a quadratic interaction between the query and stored patterns, they used an exponential one. The new energy function is:
 
-$$E(\bm{\xi}) = -\frac{1}{\beta}\log\sum_{\mu} \exp\!\left(\beta\,\bm{\xi}^{\mu\top}\bm{\xi}\right) + \frac{1}{2}\|\bm{\xi}\|^2$$
+$$E(\boldsymbol{\xi}) = -\frac{1}{\beta}\log\sum_{\mu} \exp\!\left(\beta\,\boldsymbol{\xi}^{\mu\top}\boldsymbol{\xi}\right) + \frac{1}{2}\|\boldsymbol{\xi}\|^2$$
 
 The detail matters less than the consequence: the capacity explodes from $0.14N$ to exponential in the dimension. And the update rule that falls out of minimising this energy is:
 
-$$\bm{\xi}^{\text{new}} = X\,\text{softmax}\!\left(\beta\, X^\top \bm{\xi}\right)$$
+$$\boldsymbol{\xi}^{\text{new}} = X\,\text{softmax}\!\left(\beta\, X^\top \boldsymbol{\xi}\right)$$
 
 Read that equation slowly. You take your current state, compute its similarity to every stored pattern, convert those similarities to weights via softmax, and retrieve a weighted mixture of all patterns. The parameter $\beta$ controls how sharp the retrieval is. High $\beta$: one specific memory snaps into focus. Low $\beta$: a diffuse blend of related memories. In between: a contextual cluster — a mood, a theme, a period of life rising together.
 
@@ -147,7 +147,7 @@ Now here is the part I didn't expect when I started thinking about this.
 
 The update rule of the modern Hopfield network is:
 
-$$\bm{\xi}^{\text{new}} = X\,\text{softmax}\!\left(\beta\, X^\top \bm{\xi}\right)$$
+$$\boldsymbol{\xi}^{\text{new}} = X\,\text{softmax}\!\left(\beta\, X^\top \boldsymbol{\xi}\right)$$
 
 The transformer attention mechanism is:
 
